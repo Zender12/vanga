@@ -5,6 +5,7 @@ app = Flask(__name__, template_folder="src")
 #темплейт теперь ищет в src!!!!
 
 @app.route('/')
+@app.route('/index')
 def hello_world():
     return render_template("index.html")
 
