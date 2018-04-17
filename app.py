@@ -13,7 +13,7 @@ def hello_world():
 def login():
     if request.method == 'GET':#методы. думаю понятно
       print('GET')
-      return "GET"
+      return "GET "
     if request.method =='POST':
       print('POST')
     return "login"
