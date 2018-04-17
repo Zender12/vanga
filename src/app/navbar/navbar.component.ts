@@ -12,8 +12,8 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) { }
 
-  private goTo() {
-    this.router.navigate(['pairing-chart'])
+  goTo(adress) {
+    this.router.navigate([adress])
   }
 
   ngOnInit() {

@@ -7,8 +7,8 @@ import { Router } from "@angular/router";
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  private pass: string;
-  private login: string;
+  pass: string;
+  login: string;
 
   constructor(
     private appService: AppService,
@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     console.log(event);
   }
 
-  private onClickLogin() {
+  onClickLogin() {
     console.log('login');
     this.appService.setIsLogged(true);
 

@@ -6,6 +6,7 @@ import { AppGuard } from "./app.guard";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
 import { PairingChartModule } from "./pairing-chart/pairing-chart.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarModule } from "./navbar/navbar.module";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
@@ -18,6 +19,7 @@ import { HttpModule } from "@angular/http";
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
     PairingChartModule,

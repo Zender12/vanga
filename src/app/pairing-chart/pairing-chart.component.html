@@ -1,3 +1,51 @@
-<p>
-  pairing-chart works!
-</p>
+<div class="row">
+  <div class="col s2">
+  <ul class="sidenav sidenav-fixed">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+</div>
+  <div class="col s10" style="height: 800px">
+      <ngx-charts-line-chart
+        class="chart-container"
+        [results]="test"
+        [xAxis]="showXAxis"
+        [gradient]="gradient"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [timeline]="timeline"
+        (select)="select($event)">
+      </ngx-charts-line-chart>
+    </div>
+</div>
+
+    <!--
+            *ngIf="chartType === 'line-chart'"
+        [view]="view"
+
+        [scheme]="colorScheme"
+        [schemeType]="schemeType"
+        [results]="dateDataWithOrWithoutRange"
+        [animations]="animations"
+        [legend]="showLegend"
+        [legendTitle]="legendTitle"
+        (legendLabelClick)="onLegendLabelClick($event)"
+
+
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        [xScaleMin]="xScaleMin"
+        [xScaleMax]="xScaleMax"
+        [yScaleMin]="yScaleMin"
+        [yScaleMax]="yScaleMax"
+        [timeline]="timeline"
+        [showGridLines]="showGridLines"
+        [curve]="curve"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [roundDomains]="roundDomains"
+        [tooltipDisabled]="tooltipDisabled"
+    -->

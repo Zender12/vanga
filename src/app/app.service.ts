@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppService {
-  private isLogged: boolean = false;
+  private isLogged: boolean = true;
 
   constructor() { }
 

@@ -1,23 +1,26 @@
-from flask import Flask, render_template, redirect, send_from_directory
-import os
+from flask import Flask, render_template, request, redirect
 
-app = Flask(__name__)
+#app = Flask(__name__)#
+app = Flask(__name__, static_url_path="", template_folder="dist", static_folder="dist")
 
-app = Flask(__name__, static_url_path="", static_folder='dist')
-app._static_folder = os.path.abspath(os.path.dirname(__file__))
+#темплейт теперь ищет в src!!!!
+
 @app.route('/')
-def index():
-    return redirect("./dist/index.html")
+@app.route('/index')
+def hello_world():
+    return render_template("index.html")
 
-@app.route("/<path:path>")
-def root(path):
-    """
-    This is the cheesy way I figured out to serve the Angular2 app created
-    by the angular-cli system. It essentially serves everything from
-    static/dist (the distribution directory created by angular-cli)
-    """
-    return send_from_directory(os.path.join(os.getcwd(), "src/"), path)
+@app.route('/login', methods=['GET','POST'])# get поддерживает из коробки, все остальное писать так! но если написал один дописівать и гет))))
+def login():
+    if request.method == 'GET':#методы. думаю понятно
+      print('GET')
+      return "GET "
+    if request.method =='POST':
+      print('POST')
+    return "login"
 
-
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect('/')
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, use_debugger=True, use_reloader=True)
+    app.run(host='127.0.0.1', debug=True, use_reloader=True)
