@@ -1,0 +1,29 @@
+<div class="section"></div>
+{{ login }}
+<div class="row">
+  <div class="container" style="margin-left: 38%">
+    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; border: 1px solid #EEE;">
+      <div class="col s10 offset-s1">
+      <h5 >Welcome to the VANGA. Please login</h5>
+      <div class="section"></div>
+      <form>
+        <div class="row">
+        <div class="input-field">
+          <input (ngModelChange)="updateValue($event)" type="text" class="validate">
+          <label for="username">Username</label>
+        </div>
+        </div>
+          <div class="row">
+        <div class="input-field">
+          <input type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+          </div>
+        <div class="row">
+          <a (onClick)="onClickLogin()" class="col s12 btn btn-large waves-effect indigo">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>

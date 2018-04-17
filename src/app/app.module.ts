@@ -1,18 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AppComponent } from './app.component';
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppGuard } from "./app.guard";
+import { AppService } from "./app.service";
+import { AuthModule } from "./auth/auth.module";
+import { PairingChartModule } from "./pairing-chart/pairing-chart.module";
+import { NavbarModule } from "./navbar/navbar.module";
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    AppRoutingModule,
+    AuthModule,
+    PairingChartModule,
+    NavbarModule
   ],
-  providers: [],
+  providers: [
+    AppGuard,
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AppModule,
+      providers: [
+        AppService
+      ]
+    };
+  }
+}
