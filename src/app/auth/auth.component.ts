@@ -21,9 +21,9 @@ export class AuthComponent implements OnInit {
 
   private onClickLogin() {
     console.log('login');
-    // this.appService.setIsLogged(true);
+    this.appService.setIsLogged(true);
 
-    // this.router.navigate(['/'])
+    this.router.navigate(['/'])
 
   }
   ngOnInit() {
