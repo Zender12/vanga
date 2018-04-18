@@ -21,8 +21,10 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngx-progressbar/core": "^4.1.1",
     "@swimlane/ngx-charts": "^7.3.0",
     "core-js": "^2.4.1",
+    "flatpickr": "^4.4.4",
     "materialize-css": "^1.0.0-beta",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"

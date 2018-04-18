@@ -9,7 +9,9 @@ import { PairingChartModule } from "./pairing-chart/pairing-chart.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarModule } from "./navbar/navbar.module";
 import { FormsModule } from "@angular/forms";
-import { HttpModule } from "@angular/http";
+import { SharedModule } from "./shared/shared.module";
+import { NgProgressModule } from "@ngx-progressbar/core";
+import { ApiService } from "./shared/api.service";
 
 @NgModule({
   declarations: [
@@ -18,16 +20,22 @@ import { HttpModule } from "@angular/http";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
     PairingChartModule,
-    NavbarModule
+    NavbarModule,
+    SharedModule,
+    NgProgressModule.forRoot()
+  ],
+  exports: [
+    SharedModule,
+    NgProgressModule
   ],
   providers: [
     AppGuard,
-    AppService
+    AppService,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
@@ -36,7 +44,8 @@ export class AppModule {
     return {
       ngModule: AppModule,
       providers: [
-        AppService
+        AppService,
+        ApiService
       ]
     };
   }

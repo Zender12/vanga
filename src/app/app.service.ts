@@ -13,4 +13,6 @@ export class AppService {
   setIsLogged(isLogged: boolean) {
     this.isLogged = isLogged;
   }
+
+  // getDataRange
 }

@@ -1,0 +1,6 @@
+<div class="input-field col s12">
+    <select [id]="id">
+      <option *ngFor="let option of options | async">{{ option.name }}</option>
+    </select>
+    <label>{{ placeholder }}</label>
+  </div>

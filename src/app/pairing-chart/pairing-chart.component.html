@@ -1,8 +1,18 @@
 <div class="row">
   <div class="col s2">
   <ul class="sidenav sidenav-fixed">
-      <li><a href="#!">First Sidebar Link</a></li>
-      <li><a href="#!">Second Sidebar Link</a></li>
+      <dropdown
+        [id]="2"
+        [options]="pairingChartService.getExchangeOptionsList()"
+        [placeholder]="'Choose an exchanger'"
+        (optionsChange)="optionsChange($event)"
+      ></dropdown>
+       <dropdown
+         [id]="1"
+        [options]="pairingChartService.getCurrencyPairOptionsList(1)"
+        [placeholder]="'Choose a currency pair'"
+        (optionsChange)="optionsChange($event)"
+      ></dropdown>
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </div>
@@ -49,3 +59,4 @@
         [roundDomains]="roundDomains"
         [tooltipDisabled]="tooltipDisabled"
     -->
+

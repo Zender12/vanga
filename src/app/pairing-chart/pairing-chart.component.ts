@@ -3,11 +3,16 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Observable } from "rxjs";
+import { PairingChartService } from "./pairing-chart.service";
 
 @Component({
   selector: 'pairing-chart',
   templateUrl: './pairing-chart.component.html',
-  styleUrls: ['./pairing-chart.component.css']
+  styleUrls: ['./pairing-chart.component.css'],
+  providers: [
+    PairingChartService
+  ]
 })
 export class PairingChartComponent implements OnInit, AfterViewInit {
 
@@ -69,7 +74,16 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   yAxisLabel = 'Population';
   timeline = true;
 
-  constructor() { }
+  private options = Observable.of([
+    {id: 1, name: 'USDT_BTC'}
+  ]);
+
+  private optionsChange($event) {
+    console.log('optionsChange($event)', $event);
+  }
+  constructor(
+    private pairingChartService: PairingChartService
+  ) { }
 
   ngOnInit() {
   }
