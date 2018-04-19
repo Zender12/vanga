@@ -4,11 +4,15 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { ApiService } from "./api.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LoadingBarService } from "./loading-bar.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelect, MatSelectModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
   declarations: [
     DropdownComponent

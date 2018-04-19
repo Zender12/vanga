@@ -16,6 +16,10 @@ import { PairingChartService } from "./pairing-chart.service";
 })
 export class PairingChartComponent implements OnInit, AfterViewInit {
 
+  constructor(
+    private pairingChartService: PairingChartService
+  ) { }
+
   test: any = [
   {
     "name": "Germany",
@@ -81,9 +85,7 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   private optionsChange($event) {
     console.log('optionsChange($event)', $event);
   }
-  constructor(
-    private pairingChartService: PairingChartService
-  ) { }
+
 
   ngOnInit() {
   }
