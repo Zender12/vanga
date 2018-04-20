@@ -1,18 +1,57 @@
 <div class="row">
   <div class="col s2">
-  <ul class="sidenav sidenav-fixed">
-      <dropdown
-        [options]="pairingChartService.getExchangeOptionsList()"
-        [placeholder]="'Choose an exchanger'"
-        (optionsChange)="optionsChange($event)"
-      ></dropdown>
-       <dropdown
-          [options]="pairingChartService.getCurrencyPairOptionsList(1)"
-          [placeholder]="'Choose a currency pair'"
-          (optionsChange)="optionsChange($event)"
-      ></dropdown>
+  <ul id="pairing-chart-slide-out" class="sidenav sidenav-fixed">
+    <li><div class="row"></div></li>
+    <li>
+        <div class="row">
+        <div class="col s8 offset-s2">
+          <dropdown
+            [options]="pairingChartService.exchangeOptions$"
+            [placeholder]="'Choose an exchanger'"
+            (optionsChange)="setExchange($event)"
+          ></dropdown>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col s8 offset-s2">
+           <dropdown
+              [options]="pairingChartService.currencyPairOptions$"
+              [disableSelect]="enablePairSelector()"
+              [placeholder]="'Choose a currency pair'"
+              (optionsChange)="setCurrencyPair($event)"
+          ></dropdown>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col s8 offset-s2">
+          <dropdown
+            [options]="pairingChartService.samplingPeriodOptions$"
+            [disableSelect]="enablePeriodSelector()"
+            [placeholder]="'Set the sampling period'"
+            (optionsChange)="setSamplingPeriod($event)"
+          ></dropdown>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row">
+        <div class="col s8 offset-s2">
+          <div >
+            <date-picker
+              [configuration]="pairingChartService.forecastingPeriodConfig$"
+              [placeholder]="'Set time period for forecasting'"
+              (onDatePick)="onDatePick($event)"
+            ></date-picker>
+          </div>
+        </div>
+      </div>
+    </li>
     </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="" data-target="pairing-chart-slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </div>
   <div class="col s10" style="height: 800px">
       <ngx-charts-line-chart

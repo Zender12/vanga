@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/materialize-css/sass/materialize.scss"
+        "../node_modules/materialize-css/sass/materialize.scss",
+        "../node_modules/flatpickr/dist/flatpickr.min.css"
       ],
       "scripts": [
         "../node_modules/materialize-css/dist/js/materialize.js"

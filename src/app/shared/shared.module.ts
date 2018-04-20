@@ -5,20 +5,29 @@ import { ApiService } from "./api.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LoadingBarService } from "./loading-bar.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSelect, MatSelectModule } from '@angular/material';
+import { MatRadioModule, MatSelect, MatSelectModule } from '@angular/material';
+import { RadioButtonComponent } from './radio-button/radio-button.component';
+import { Ng2FlatpickrModule } from 'ng2-flatpickr';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
+    Ng2FlatpickrModule
   ],
   declarations: [
-    DropdownComponent
+    DropdownComponent, //TODO: Remove all not used ...
+    RadioButtonComponent,
+    DatePickerComponent
   ],
   exports: [
-    DropdownComponent
+    DropdownComponent,
+    RadioButtonComponent,
+    DatePickerComponent
   ],
   providers: [
     LoadingBarService

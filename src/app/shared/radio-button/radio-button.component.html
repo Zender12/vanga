@@ -1,0 +1,25 @@
+<mat-radio-group>
+  {{ placeholder }}
+  <mat-radio-button
+    *ngFor="let option of selectorOptions"
+    [value]="option.id"
+    (selectionChange)="pickOption($event)"
+  >
+    {{ option.value }}
+  </mat-radio-button>
+</mat-radio-group>
+
+<!--<mat-form-field>-->
+  <!--<mat-select-->
+    <!--placeholder="{{ placeholder }}"-->
+    <!--[disabled]="disableSelect"-->
+  <!--&gt;-->
+    <!--<mat-option-->
+      <!--*ngFor="let option of selectorOptions"-->
+      <!--[value]="option.id"-->
+      <!--(click)="pickOption(option.id)"-->
+    <!--&gt;-->
+      <!--{{ option.value }}-->
+    <!--</mat-option>-->
+  <!--</mat-select>-->
+<!--</mat-form-field>-->

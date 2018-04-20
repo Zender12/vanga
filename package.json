@@ -26,8 +26,10 @@
     "@ngx-progressbar/core": "^4.1.1",
     "@swimlane/ngx-charts": "^7.3.0",
     "core-js": "^2.4.1",
-    "flatpickr": "^4.4.4",
     "materialize-css": "^1.0.0-beta",
+    "moment": "^2.22.1",
+    "ng2-flatpickr": "^1.5.1",
+    "npm": "^5.8.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

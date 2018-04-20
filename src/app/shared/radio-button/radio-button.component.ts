@@ -11,14 +11,14 @@ import { BehaviorSubject } from "rxjs";
 import { Option } from "../option.model";
 
 @Component({
-  selector: 'dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css']
+  selector: 'radio-button',
+  templateUrl: './radio-button.component.html',
+  styleUrls: ['./radio-button.component.css']
 })
-export class DropdownComponent implements OnInit, AfterViewInit {
+export class RadioButtonComponent implements OnInit, AfterViewInit {
   @Input() placeholder: string;
   @Input() disableSelect: boolean = false;
-  @Input() options:  BehaviorSubject<Array<Option>> = new BehaviorSubject([]);
+  @Input() options: BehaviorSubject<Array<Option>> = new BehaviorSubject(null);
   @Output() optionsChange: EventEmitter<any> = new EventEmitter();
 
   private randomId: string;
@@ -30,7 +30,6 @@ export class DropdownComponent implements OnInit, AfterViewInit {
   }
 
   pickOption(id: number) {
-    console.log('pickOption', id);
     this.optionsChange.emit(id);
   }
 
