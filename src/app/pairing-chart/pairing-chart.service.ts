@@ -107,6 +107,7 @@ export class PairingChartService {
       this.currentDatePeriod$.filter(value => !!value),
       this.numberOfIterations$.filter(value => !!value)
     )
+      .take(1)
       .subscribe(value => {
           let request = {
             exchange: value[0],

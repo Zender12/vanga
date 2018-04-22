@@ -25,6 +25,7 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   private showDiagram = false;
   private setMaxDate: any;
   private diagramData: any = false;
+  private enableCalculateButton = false;
 
   @ViewChild('forecastingPeriod') forecastingPeriodElement: ElementRef;
 
@@ -107,8 +108,9 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
         this.xAxisLabel = value.xLabel;
         this.showDiagram = true;
       });
-    this.pairingChartService.validateConfigForm().subscribe(v => {
-        console.log('valid', v);
+
+    this.pairingChartService.validateConfigForm().subscribe(value => {
+      this.enableCalculateButton = value;
     });
   }
 

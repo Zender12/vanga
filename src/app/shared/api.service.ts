@@ -76,7 +76,8 @@ export class ApiService extends CrudAPI{
   }
 
   getForecast(config: any): Observable<any> {
-        return Observable.of({
+    console.log('getForecast', config);
+    return Observable.of({
       data: [
         {
           "name": "Germany",

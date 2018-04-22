@@ -27,7 +27,6 @@ export class DatePickerComponent implements OnInit, AfterViewInit {
   private flatpickrOptions: FlatpickrOptions;
 
   ngOnInit() {
-    console.log('ninit date');
     this.configuration.take(1).subscribe(options => {
       this.flatpickrOptions = options;
     });
