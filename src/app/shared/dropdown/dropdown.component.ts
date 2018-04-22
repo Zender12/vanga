@@ -30,7 +30,6 @@ export class DropdownComponent implements OnInit, AfterViewInit {
   }
 
   pickOption(id: number) {
-    console.log('pickOption', id);
     this.optionsChange.emit(id);
   }
 
@@ -42,9 +41,6 @@ export class DropdownComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // let elem = document.getElementById(this.randomId);
-    // let instance = M.FormSelect.init(elem, [{id: 1 , name: 'name'}]);
-    // console.log('elem', instance);
   }
 
 }

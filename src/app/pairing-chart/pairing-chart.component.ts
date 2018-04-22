@@ -6,6 +6,7 @@ import {
 import { Observable } from "rxjs";
 import { PairingChartService } from "./pairing-chart.service";
 import * as M from 'materialize-css';
+import { FlatpickrOptions } from "ng2-flatpickr";
 
 @Component({
   selector: 'pairing-chart',
@@ -16,61 +17,20 @@ import * as M from 'materialize-css';
   ]
 })
 export class PairingChartComponent implements OnInit, AfterViewInit {
-  private currentExchange: number;
-  private currentCurrencyPair: number;
-  private currentSamplingPeriod: number;
-  private forecastingPeriodConfig: any;
+  private currentExchange: number; // TODO: Remove
+  private currentCurrencyPair: number; // TODO: Remove
+  private currentSamplingPeriod: number; // TODO: Remove
+  private forecastingPeriodConfig: FlatpickrOptions;
+  private showConfigForm = false;
+  private showDiagram = false;
+  private setMaxDate: any;
+  private diagramData: any = false;
 
   @ViewChild('forecastingPeriod') forecastingPeriodElement: ElementRef;
 
   constructor(
     private pairingChartService: PairingChartService
   ) { }
-
-  test: any = [
-  {
-    "name": "Germany",
-    "series": [
-      {
-        "name": "2010",
-        "value": 7300000
-      },
-      {
-        "name": "2011",
-        "value": 8940000
-      }
-    ]
-  },
-
-  {
-    "name": "USA",
-    "series": [
-      {
-        "name": "2010",
-        "value": 7870000
-      },
-      {
-        "name": "2011",
-        "value": 8270000
-      }
-    ]
-  },
-
-  {
-    "name": "France",
-    "series": [
-      {
-        "name": "2010",
-        "value": 5000002
-      },
-      {
-        "name": "2011",
-        "value": 5800000
-      }
-    ]
-  }
-];
-
 
   // options
   showXAxis = true;
@@ -84,9 +44,9 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   yAxisLabel = 'Population';
   timeline = true;
 
-  private options = Observable.of([
-    {id: 1, name: 'USDT_BTC'}
-  ]);
+  // private options = Observable.of([
+  //   {id: 1, name: 'USDT_BTC'}
+  // ]);
 
   enablePairSelector() {
     return !+this.currentExchange;
@@ -112,22 +72,43 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   }
 
   onDatePick($event) {
-    console.log('onDatePick($event)', $event);
+    this.pairingChartService.currentDatePeriod$.next($event);
+  }
+
+  setMaximumPeriod($event) {
+    if ($event.checked) {
+      this.setMaxDate = [this.forecastingPeriodConfig.minDate, this.forecastingPeriodConfig.maxDate];
+    }
+  }
+
+  setNumberOfIterations($event) {
+    this.pairingChartService.numberOfIterations$.next($event.value);
+  }
+
+  calculate() {
+    this.pairingChartService.getForecast();
   }
 
   ngOnInit() {
-    this.forecastingPeriodConfig = {
-      dateFormat: 'Y-m-d',
-      enableTime: false,
-      mode: 'range',
-    };
-
-
-
     this.pairingChartService.initPairingChartService();
+    this.pairingChartService.forecastingPeriodConfig$
+      .filter(value => !!value)
+      .skip(1)
+      .subscribe(config => {
+        this.forecastingPeriodConfig = config;
+        this.showConfigForm = true;
+    });
 
-    this.pairingChartService.forecastingPeriodConfig$.subscribe(v => {
-        console.log('xer', v);
+    this.pairingChartService.diagramData$
+      .filter(value => !!value)
+      .subscribe(value => {
+        this.diagramData = value.data;
+        this.yAxisLabel = value.yLabel;
+        this.xAxisLabel = value.xLabel;
+        this.showDiagram = true;
+      });
+    this.pairingChartService.validateConfigForm().subscribe(v => {
+        console.log('valid', v);
     });
   }
 

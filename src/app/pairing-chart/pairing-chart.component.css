@@ -1,6 +1,6 @@
 .sidenav {
   margin-top: 64px;
 }
-.ebala {
-  color: rgba(0,0,0,.87);
+mat-slider {
+  width: 100%;
 }

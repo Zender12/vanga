@@ -38,15 +38,52 @@
       </div>
     </li>
     <li>
-      <div class="row">
+      <div class="row"
+        *ngIf="showConfigForm"
+      >
         <div class="col s8 offset-s2">
           <div >
             <date-picker
+              [setDate]="setMaxDate"
               [configuration]="pairingChartService.forecastingPeriodConfig$"
               [placeholder]="'Set time period for forecasting'"
               (onDatePick)="onDatePick($event)"
             ></date-picker>
           </div>
+        </div>
+      </div>
+      <div class="row"
+           *ngIf="showConfigForm"
+      >
+         <div class="col s8 offset-s2">
+            <mat-slide-toggle
+              (change)="setMaximumPeriod($event)"
+            >
+              Set maximum period
+            </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="row" *ngIf="showConfigForm">
+        <div class="col s10">
+          <mat-slider
+            min="1"
+            max="100"
+            step="1"
+            value="1"
+            (change)="setNumberOfIterations($event)"
+          ></mat-slider>
+        </div>
+        <div class="col s2">
+          {{ pairingChartService.numberOfIterations$ | async}}
+        </div>
+      </div>
+      <div class="row" *ngIf="showConfigForm">
+        <div class="col s8 offset-s3">
+          <a
+            class="waves-effect waves-light btn-small"
+            [ngClass]="{'disabled': !pairingChartService.validateConfigForm() | async}"
+            (click)="calculate()"
+          ><i class="material-icons right">memory</i>Calculate</a>
         </div>
       </div>
     </li>
@@ -55,8 +92,9 @@
 </div>
   <div class="col s10" style="height: 800px">
       <ngx-charts-line-chart
+        *ngIf="showDiagram"
         class="chart-container"
-        [results]="test"
+        [results]="diagramData"
         [xAxis]="showXAxis"
         [gradient]="gradient"
         [yAxis]="showYAxis"
@@ -66,6 +104,7 @@
         [timeline]="timeline"
         (select)="select($event)">
       </ngx-charts-line-chart>
+      <h3 *ngIf="!showDiagram" class="center-align">At first select parameters.</h3>
     </div>
 </div>
 

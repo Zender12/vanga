@@ -26,7 +26,6 @@ export class ApiService extends CrudAPI{
   }
 
   getSamplingPeriodList(exchangeId: number, pairId: number): Observable<any> {
-    console.log('tut');
     // return this.read(RESOURCE_EXCHANGE_OPTIONS);
     return Observable.of([
       {id: 1, value: '5 min'},
@@ -42,10 +41,74 @@ export class ApiService extends CrudAPI{
     // return this.read(RESOURCE_EXCHANGE_OPTIONS);
     return Observable.of({
       minDate: '2018-03-07',
-      maxDate: '2018-04-20',
-      enableTime
-        :
-        false
+      maxDate: '2018-04-20'
     });
+  }
+
+    getAppConfig(): Observable<any> {
+    // return this.read(RESOURCE_EXCHANGE_OPTIONS);
+    return Observable.of({
+    });
+  }
+
+  getDigarammData(config: any): Observable<any> {
+    return Observable.of({
+      data: [
+        {
+          "name": "Germany",
+          "series": [
+            {
+              "name": "2010",
+              "value": 7300000
+            },
+            {
+              "name": "2011",
+              "value": 8940000
+            }
+          ]
+        },
+
+      ],
+      yLabel: 'Population',
+      xLabel: 'Country'
+      }
+    )
+  }
+
+  getForecast(config: any): Observable<any> {
+        return Observable.of({
+      data: [
+        {
+          "name": "Germany",
+          "series": [
+            {
+              "name": "2010",
+              "value": 7300000
+            },
+            {
+              "name": "2011",
+              "value": 8940000
+            }
+          ]
+        },
+                {
+          "name": "France",
+          "series": [
+            {
+              "name": "2010",
+              "value": 5000002
+            },
+            {
+              "name": "2011",
+              "value": 5800000
+            }
+          ]
+        }
+
+      ],
+      yLabel: 'Population',
+      xLabel: 'Country'
+      }
+    )
   }
 }
