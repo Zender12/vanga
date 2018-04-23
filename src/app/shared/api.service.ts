@@ -16,8 +16,8 @@ export class ApiService extends CrudAPI{
   }
 
   getExchangeOptionsList(): Observable<any> {
-    // return this.read(RESOURCE_EXCHANGE_OPTIONS);
-    return Observable.of([{id: 1, value: 'Poloniex'}]);
+    return this.read('getExchangeOptionsList');
+    // return Observable.of([{id: 1, value: 'Poloniex'}]);
   }
 
   getCurrencyPairOptionsList(exchangeId: number): Observable<any> {

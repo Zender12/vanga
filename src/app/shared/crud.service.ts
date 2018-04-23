@@ -25,7 +25,7 @@ export class CrudAPI {
       params = params.append(param[0], param[1]);
     }
 
-    this.loadingStart();
+    // this.loadingStart();
     let subscription = this.http.get(url, {headers, params}).share()
       .map((response: any) => {
         return response.json().data;
@@ -34,7 +34,9 @@ export class CrudAPI {
     subscription.subscribe(
       result => {},
       error => { this.handleError(error); },
-      () => { this.loadingComplete(); }
+      () => {
+        // this.loadingComplete();
+      }
     );
     return subscription;
   }
@@ -42,7 +44,7 @@ export class CrudAPI {
 
   protected handleError(response: Response | any): Observable<any> {
     let message: string;
-    this.loadingComplete();
+    // this.loadingComplete();
 
     const status: number = response.status;
     const body = response.json() || '';
@@ -52,10 +54,10 @@ export class CrudAPI {
   }
 
   protected loadingStart() {
-    this.loadingBarService.start();
+    // this.loadingBarService.start();
   }
 
   protected loadingComplete() {
-    this.loadingBarService.complete();
+    // this.loadingBarService.complete();
   }
 }
