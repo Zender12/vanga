@@ -24,7 +24,7 @@ export class DatePickerComponent implements OnInit, AfterViewInit {
   @Output() onDatePick: EventEmitter<any> = new EventEmitter();
   @ViewChild('datePicker') datePicker: Ng2FlatpickrComponent
 
-  private flatpickrOptions: FlatpickrOptions;
+  public flatpickrOptions: FlatpickrOptions;
 
   ngOnInit() {
     this.configuration.take(1).subscribe(options => {

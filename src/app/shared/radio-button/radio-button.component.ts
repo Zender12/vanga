@@ -23,7 +23,7 @@ export class RadioButtonComponent implements OnInit, AfterViewInit {
 
   private randomId: string;
   private selectedStatus;
-  private selectorOptions: Array<Option>;
+  public selectorOptions: Array<Option>;
 
   constructor() {
     this.randomId = ('' + Math.random()).substring(2);

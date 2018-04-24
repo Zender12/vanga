@@ -1,6 +1,6 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { NgProgressComponent } from "@ngx-progressbar/core";
+import { NgProgress, NgProgressComponent } from "@ngx-progressbar/core";
 
 @Injectable()
 export class LoadingBarService {
@@ -8,17 +8,22 @@ export class LoadingBarService {
   private processesCount: number = 0;
   private processesCount$: BehaviorSubject<number> = new BehaviorSubject(null);
 
+  constructor(
+    public ngProgress: NgProgress
+  ) {}
+
   public start() {
     this.processesCount++;
     this.triggerProcessCountChange(this.processesCount);
-    this.progressBar.start();
+    this.ngProgress.start();
   }
 
   public complete() {
     this.processesCount--;
     this.triggerProcessCountChange(this.processesCount);
     if (this.processesCount === 0) {
-      this.progressBar.complete();
+      console.log('complite');
+      this.ngProgress.complete();
     }
   }
 

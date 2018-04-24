@@ -21,8 +21,8 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   private currentCurrencyPair: number; // TODO: Remove
   private currentSamplingPeriod: number; // TODO: Remove
   private forecastingPeriodConfig: FlatpickrOptions;
-  private showConfigForm = false;
-  private showDiagram = false;
+  public showConfigForm = false;
+  public showDiagram = false;
   private setMaxDate: any;
   private diagramData: any = false;
   private enableCalculateButton = false;
@@ -30,7 +30,7 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   @ViewChild('forecastingPeriod') forecastingPeriodElement: ElementRef;
 
   constructor(
-    private pairingChartService: PairingChartService
+    public pairingChartService: PairingChartService
   ) { }
 
   // options

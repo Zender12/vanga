@@ -8,10 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  private progressBarConfig = {
+  public progressBarConfig = {
     spinner: false,
     color: '#FFA441'
-  }
-
-
+  };
 }

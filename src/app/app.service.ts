@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs/Rx";
-import { Option } from "./shared/option.model";
 import { ApiService } from "./shared/api.service";
 
 @Injectable()
@@ -31,6 +30,4 @@ export class AppService {
   setIsLogged(isLogged: boolean) {
     this.isLogged = isLogged;
   }
-
-  // getDataRange
 }
