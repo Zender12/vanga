@@ -21,9 +21,14 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   private currentCurrencyPair: number; // TODO: Remove
   private currentSamplingPeriod: number; // TODO: Remove
   private forecastingPeriodConfig: FlatpickrOptions;
+  private datePeriodConfig: FlatpickrOptions;
   public showConfigForm = false;
+  public showDateConfigForm = false;
   public showDiagram = false;
   private setMaxDate: any;
+  private setForecastingMaxDate: any;
+  private maxDateChecked: boolean = false;
+  private forecastingMaxDateChecked: boolean = false;
   private diagramData: any = false;
   private enableCalculateButton = false;
 
@@ -72,13 +77,29 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
     this.pairingChartService.currentSamplingPeriod$.next(this.currentSamplingPeriod);
   }
 
-  onDatePick($event) {
+  onPeriodDatePick($event) {
     this.pairingChartService.currentDatePeriod$.next($event);
+    this.maxDateChecked = false;
+    console.log(1, this.maxDateChecked);
+  }
+
+  onForecastingDatePick($event) {
+    this.pairingChartService.currentForecastingDatePeriod$.next($event);
+    this.forecastingMaxDateChecked = false;
   }
 
   setMaximumPeriod($event) {
+    this.maxDateChecked = $event.checked;
+    console.log(this.maxDateChecked);
     if ($event.checked) {
-      this.setMaxDate = [this.forecastingPeriodConfig.minDate, this.forecastingPeriodConfig.maxDate];
+      this.setMaxDate = [this.datePeriodConfig.minDate, this.datePeriodConfig.maxDate];
+    }
+  }
+
+  setForecastingMaximumPeriod($event) {
+    this.forecastingMaxDateChecked = $event.checked;
+    if ($event.checked) {
+      this.setForecastingMaxDate = [this.forecastingPeriodConfig.minDate, this.forecastingPeriodConfig.maxDate];
     }
   }
 
@@ -99,6 +120,14 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
         this.forecastingPeriodConfig = config;
         this.showConfigForm = true;
     });
+
+    this.pairingChartService.forecastingPeriodConfig$
+      .filter(value => !!value)
+      .skip(1)
+      .subscribe(config => {
+        this.datePeriodConfig = config;
+        this.showDateConfigForm = true;
+      });
 
     this.pairingChartService.diagramData$
       .filter(value => !!value)

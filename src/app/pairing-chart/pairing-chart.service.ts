@@ -10,12 +10,18 @@ export class PairingChartService {
   public currentCurrencyPair$:  BehaviorSubject<number> = new BehaviorSubject(null);
   public currentSamplingPeriod$:  BehaviorSubject<number> = new BehaviorSubject(null);
   public currentDatePeriod$:  BehaviorSubject<Array<string>> = new BehaviorSubject(null);
+  public currentForecastingDatePeriod$:  BehaviorSubject<Array<string>> = new BehaviorSubject(null);
   public numberOfIterations$:  BehaviorSubject<number> = new BehaviorSubject(null);
 
   public exchangeOptions$: BehaviorSubject<Array<Option>> = new BehaviorSubject([]);
   public currencyPairOptions$:  BehaviorSubject<Array<Option>> = new BehaviorSubject([]);
   public samplingPeriodOptions$:  BehaviorSubject<Array<Option>> = new BehaviorSubject([]);
   public forecastingPeriodConfig$:  BehaviorSubject<any> = new BehaviorSubject({
+    dateFormat: 'Y-m-d',
+    enableTime: false,
+    mode: 'range',
+  });
+  public datePeriodConfig$:  BehaviorSubject<any> = new BehaviorSubject({
     dateFormat: 'Y-m-d',
     enableTime: false,
     mode: 'range',
@@ -45,6 +51,7 @@ export class PairingChartService {
       .subscribe(ids => {
         this.getSamplingPeriodOptions(ids[0], ids[1]);  // wtf? ...ids
         this.getForecastingPeriodConfig(ids[0], ids[1]);
+        this.getDatePeriodConfig(ids[0], ids[1]);
       }
     );
     this.getDigarammData();// TODO: Rename
@@ -66,6 +73,13 @@ export class PairingChartService {
       .take(1)
       .map(config => ({...config, ...this.forecastingPeriodConfig$.getValue()}))
       .subscribe(config => this.forecastingPeriodConfig$.next(config));
+  }
+
+  getDatePeriodConfig (exchangeId: number, pairId: number) {
+    this.apiService.getForecastingPeriodConfig(exchangeId, pairId)
+      .take(1)
+      .map(config => ({...config, ...this.datePeriodConfig$.getValue()}))
+      .subscribe(config => this.datePeriodConfig$.next(config));
   }
 
   getDigarammData() { // TODO: Rename
@@ -91,7 +105,7 @@ export class PairingChartService {
      return  this.currentExchange$.combineLatest(
       this.currentCurrencyPair$.filter(value => !!value),
       this.currentSamplingPeriod$.filter(value => !!value),
-      this.currentDatePeriod$.filter(value => !!value),
+      this.currentForecastingDatePeriod$.filter(value => !!value),
       this.numberOfIterations$.filter(value => !!value)
     )
       .map(value => {

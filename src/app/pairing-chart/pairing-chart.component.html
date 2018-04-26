@@ -39,15 +39,44 @@
     </li>
     <li>
       <div class="row"
-        *ngIf="showConfigForm"
+           *ngIf="showDateConfigForm"
       >
         <div class="col s8 offset-s2">
           <div >
             <date-picker
               [setDate]="setMaxDate"
+              [configuration]="pairingChartService.datePeriodConfig$"
+              [placeholder]="'Set date period'"
+              (onDatePick)="onPeriodDatePick($event)"
+            ></date-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row"
+           *ngIf="showDateConfigForm"
+      >
+        <div class="col s8 offset-s2">
+          {{ maxDateChecked }}
+          <mat-slide-toggle
+            [checked]="maxDateChecked"
+            (change)="setMaximumPeriod($event)"
+          >
+            Set maximum period
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="row"
+        *ngIf="showConfigForm"
+      >
+        <div class="col s8 offset-s2">
+          <div >
+            <date-picker
+              [setDate]="setForecastingMaxDate"
               [configuration]="pairingChartService.forecastingPeriodConfig$"
               [placeholder]="'Set time period for forecasting'"
-              (onDatePick)="onDatePick($event)"
+              (onDatePick)="onForecastingDatePick($event)"
             ></date-picker>
           </div>
         </div>
@@ -57,7 +86,8 @@
       >
          <div class="col s8 offset-s2">
             <mat-slide-toggle
-              (change)="setMaximumPeriod($event)"
+              [checked]="forecastingMaxDateChecked"
+              (change)="setForecastingMaximumPeriod($event)"
             >
               Set maximum period
             </mat-slide-toggle>
