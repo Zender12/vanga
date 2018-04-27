@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   goTo(adress) {
-    this.router.navigate([adress])
+    this.router.navigate([adress]);
   }
 
   ngOnInit() {

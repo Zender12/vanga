@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { SharedModule } from "./shared/shared.module";
 import { NgProgressModule } from "@ngx-progressbar/core";
 import { ApiService } from "./shared/api.service";
+import { ImportModule } from './import/import.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ApiService } from "./shared/api.service";
     PairingChartModule,
     NavbarModule,
     SharedModule,
+    ImportModule,
     NgProgressModule.forRoot()
   ],
   exports: [
