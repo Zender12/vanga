@@ -80,7 +80,6 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
   onPeriodDatePick($event) {
     this.pairingChartService.currentDatePeriod$.next($event);
     this.maxDateChecked = false;
-    console.log(1, this.maxDateChecked);
   }
 
   onForecastingDatePick($event) {
@@ -88,19 +87,12 @@ export class PairingChartComponent implements OnInit, AfterViewInit {
     this.forecastingMaxDateChecked = false;
   }
 
-  setMaximumPeriod($event) {
-    this.maxDateChecked = $event.checked;
-    console.log(this.maxDateChecked);
-    if ($event.checked) {
-      this.setMaxDate = [this.datePeriodConfig.minDate, this.datePeriodConfig.maxDate];
-    }
+  setMaximumPeriod() {
+    this.setMaxDate = [this.datePeriodConfig.minDate, this.datePeriodConfig.maxDate];
   }
 
-  setForecastingMaximumPeriod($event) {
-    this.forecastingMaxDateChecked = $event.checked;
-    if ($event.checked) {
-      this.setForecastingMaxDate = [this.forecastingPeriodConfig.minDate, this.forecastingPeriodConfig.maxDate];
-    }
+  setForecastingMaximumPeriod() {
+    this.setForecastingMaxDate = [this.forecastingPeriodConfig.minDate, this.forecastingPeriodConfig.maxDate];
   }
 
   setNumberOfIterations($event) {

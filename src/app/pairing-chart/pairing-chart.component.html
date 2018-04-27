@@ -56,13 +56,10 @@
            *ngIf="showDateConfigForm"
       >
         <div class="col s8 offset-s2">
-          {{ maxDateChecked }}
-          <mat-slide-toggle
-            [checked]="maxDateChecked"
-            (change)="setMaximumPeriod($event)"
-          >
-            Set maximum period
-          </mat-slide-toggle>
+          <a
+            class="waves-effect waves-light btn-small"
+            (click)="setMaximumPeriod()"
+          >Set maximum period</a>
         </div>
       </div>
     </li>
@@ -85,12 +82,10 @@
            *ngIf="showConfigForm"
       >
          <div class="col s8 offset-s2">
-            <mat-slide-toggle
-              [checked]="forecastingMaxDateChecked"
-              (change)="setForecastingMaximumPeriod($event)"
-            >
-              Set maximum period
-            </mat-slide-toggle>
+           <a
+             class="waves-effect waves-light btn-small"
+             (click)="setForecastingMaximumPeriod()"
+           >Set maximum period</a>
         </div>
       </div>
       <div class="row" *ngIf="showConfigForm">
