@@ -8,7 +8,7 @@ import {
 } from "@angular/common/http";
 
 @Injectable()
-export class CrudAPI {
+export class CrudAPI { // TODO Use HttpParams!!!!
   constructor(
     public http: HttpClient,
     public loadingBarService: LoadingBarService
@@ -17,10 +17,8 @@ export class CrudAPI {
   read(url: string, param?: Array<string>): Observable<any> {
     let headers = new HttpHeaders();
     let params = new HttpParams();
-    headers.append('Content-Type','application/json');
-    let options = {headers};
 
-
+    headers = headers.append('Content-Type','application/json');
     if (param) {
       params = params.append(param[0], param[1]);
     }
@@ -28,7 +26,7 @@ export class CrudAPI {
     this.loadingStart();
     let subscription = this.http.get(url, {headers, params}).share()
       .map((response: any) => {
-        return response.json().data;
+        return response;
       });
 
     subscription.subscribe(
@@ -38,7 +36,6 @@ export class CrudAPI {
     );
     return subscription;
   }
-
 
   protected handleError(response: Response | any): Observable<any> {
     let message: string;
